@@ -1,0 +1,84 @@
+<div class="products-main-container container-fluid" >
+    <div class="row column-container" >
+        <div class="column-one col-sm-9 col-md-9" ng-init="product">
+            <div class="row column-one-row1">
+                <div class="products-left col-sm-3 col-md-3" >
+                    <img class="img-responsive product-image" ng-src="{{product.image}}" alt="" />
+                </div>
+
+                <div class="products-middle col-sm-9 col-md-9" >
+                    <div class="container-fluid">
+                        <h2><span>{{product.productName}}</span> </h2>
+                        <h6 >
+                            <a ui-sref="app.farmerProducts({foo:'fooval',farmerId:product.productVendor})">
+                                <span style="font-color:#0accff"><u>{{product.productVendor}}</u></span>
+                            </a>
+                        </h6>
+                        <strong><p>${{product.productPrice}}</p></strong>
+                        <button class="btn btn-success mybtn" ng-click="addToCart(product)">Add to Cart</button>
+                    </div>
+                </div>
+            </div><!--column-one-row2-->
+
+            <div class="row column-one-row2" >
+                <div class="container-fluid">
+                    <div class="conatainer-fluid product-details-temp">
+                        <strong><span>Product Description</span></strong>
+                        <br><br>
+                        <p>
+                            {{product.productDescription}}
+                        </p>
+                        <hr>
+                        <strong><span>Product Details</span></strong>
+                        <p>{{product.productId}}</p>
+                        <hr>
+
+                        <div class="pull-right">
+                            <a typt="button" style="color: #00AA00" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"><span class="glyphicon glyphicon-chevron-left"></span></a>
+
+                            <a typt="button" style="color: #00AA00" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </div>
+
+                        <strong><span>Cutomer Reviews</span></strong>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="review in product.reviews| startFrom:currentPage*pageSize | limitTo:pageSize" >
+                                <div style="margin-left: 10px">
+<!--custom angular directive-->
+                                    <span > <div star-rating rating-value="review.rating" max="5" ></div>
+                                    </span>
+                                    <h6>by <a href="#">{{review.customer}}</a></h6>
+<!--end snippet-->
+                                    <p style="margin-left: 15px;position: relative">{{review.comment}}</p>
+                                </div>
+                            </li>
+                         </ul>
+
+                    </div>
+                </div>
+            </div><!--column-one-row2-->
+
+        </div><!--column-one-end-->
+
+        <div class="column-two col-sm-3 col-md-3">
+            <div class="products-right col-sm-12 mycols" >
+
+                <div class="container-fluid checkout-temp">
+                    <button type="button" class="btn btn-success btn-block mybtn" ng-click="checkout()">Proceed to Checkout</button>
+                    <div style="margin-top: 10px;margin-bottom: 10px;">
+                        <div class="mainContent" ng-repeat="cart in addedToCartItems" style="font-size: 15px;">
+                            <input type="button" value="+" ng-click="changeQuantity(cart,1)"/>
+                            <input type="button" value="-" ng-click="changeQuantity(cart,0)"/>
+                            <span><b>Detail: </b>{{cart.productName}},</span>
+                            <span><b>Quantity: </b>{{cart.quantity}},</span>
+                            <span><b>Amount: </b>{{cart.productPrice}}</span>
+                            <span class="glyphicon glyphicon-remove-sign" ng-click="removeFromCart(cart)"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><!--column-two-end-->
+
+    </div> <!--row end -->
+
+</div><!-- main container end -->

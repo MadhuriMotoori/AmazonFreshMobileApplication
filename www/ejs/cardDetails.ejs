@@ -1,0 +1,113 @@
+
+<div class="container" style="padding-bottom: 200px;padding-top: 100px;">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-3">
+            <form name="form" role="form">
+                <div class="form-group">
+                    <h3>Card Details.</h3>
+                </div>
+                <div class="form-group">
+                    <label for="creditcardtype">Credit Card Type</label>
+                    <select class="form-control" id="creditcardtype" ng-model="user.creditcardtype" required>
+                        <option value="">Type </option>
+                        <option value="mastercard">MasterCard</option>
+                        <option value="visa">Visa</option>
+                    </select>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error': form.creditcardno.$dirty && form.creditcardno.$error.required }">
+                    <label for="creditcardno">Credit Card Number</label>
+                    <input type="text"
+                           name="creditcardno" id="creditcardno" class="form-control"
+                           required ng-model="user.creditcardno" required/>
+					<span
+                            ng-show="form.creditcardno.$dirty && form.creditcardno.$error.required"
+                            class="help-block">Credit card number is required</span>
+
+                    <div ng-hide="creditcardno_size_error">
+                        <strong><font color="red">Credit card number length should be 16
+                            </font></strong>
+                    </div>
+
+                    <div ng-hide="creditcardno_type_error">
+                        <strong><font color="red">Credit card number should only contain
+                                numbers
+                            </font></strong>
+                    </div>
+
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error': form.cardholdername.$dirty && form.cardholdername.$error.required }">
+                    <label for="cardholdername">Cardholder Name</label>
+                    <input type="text"
+                           name="cardholdername" id="cardholdername" class="form-control"
+                           required placeholder="Name as it appears on credit card"
+                           ng-model="user.cardholdername" required/>
+					<span
+                            ng-show="form.cardholdername.$dirty && form.cardholdername.$error.required"
+                            class="help-block">Credit card holder name is required</span>
+
+                    <div ng-hide="cardholdername_type_error">
+                        <strong><font color="red">Credit card holder name should contain
+                                only characters
+                            </font></strong>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error': form.creditcardcvv.$dirty && form.creditcardcvv.$error.required }">
+                    <label for="creditcardcvv">CVV</label>
+                    <input type="number"
+                           name="creditcardcvv" id="creditcardcvv" class="form-control"
+                           required ng-model="user.creditcardcvv" placeholder="123"  required/>
+					<span
+                            ng-show="form.creditcardcvv.$dirty && form.creditcardcvv.$error.required"
+                            class="help-block">Credit card cvv is required</span>
+                </div>
+                <div class="form-group">
+                    <label for="expirationdate">Expiration Date</label> &nbsp;
+                    <select class="form-control" id="user.customer_month_expiry" ng-model="user.customer_month_expiry" style="width:35%;display:inline"
+                            required>
+                        <option value="">Month</option>
+                        <option value="01">Jan</option><option value="02">Feb</option>
+                        <option value="03">Mar</option><option value="04">Apr</option>
+                        <option value="05">May</option><option value="06">Jun</option>
+                        <option value="07">Jul</option><option value="08">Aug</option>
+                        <option value="09">Sept</option><option value="10">Oct</option>
+                        <option value="11">Nov</option><option value="12">Dec</option>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select class="form-control" id="user.customer_year_expiry" ng-model="user.customer_year_expiry" style="width:35%;display:inline">
+                        <option value="">Year</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+
+                    <div ng-hide="unexpected_error">
+                        <strong><font color="red">Unexpected error, please try again
+                            </font></strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a type="button" class="btn btn-success btn-lg col-sm-12" ng-click="signup()"
+                       ng-disabled="form.$invalid">
+                        Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

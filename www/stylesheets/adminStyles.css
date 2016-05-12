@@ -1,0 +1,33 @@
+.requestscontainer{
+    padding-top: 20px;
+}
+
+.requestbutton{
+    width:100%;
+    color: #000000;
+}
+
+.requestbutton2{
+    width:80%;
+    color: #000000;
+}
+
+.emptyDiv{
+    margin-top:50px;
+}
+
+ul { list-style: none; }
+
+.modal-body {
+    height: 230px;
+}
+
+
+.modal{
+    top:200px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100% ;
+
+}

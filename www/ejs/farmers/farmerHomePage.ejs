@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-md-3" ng-controller="navBarController">
+            <ul class="nav nav-pills nav-stacked" ng-init="initializeBar()">
+                <li role="presentation" ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">My Profile</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.farmeraddProduct">Add Product</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.farmerDeleteProduct({farmerId:farmer.vendor})">Delete Product</a></li>
+                <li role="presentation" ng-class="{active:isSelected(6)}">
+                    <a ng-click="select(6)" aria-controls="view statistics" role="tab" ui-sref="app.farmerUpdateProduct({farmerId:farmer.vendor})">Update Product</a></li>
+                <li role="presentation" ng-class="{active:isSelected(4)}">
+                    <a ng-click="select(4)" aria-controls="bill details" role="tab">View Reviews</a></li>
+                <li role="presentation" ng-class="{active:isSelected(5)}">
+                    <a ng-click="select(5)" aria-controls="delete account" role="tab"
+                       ui-sref="app.farmerDeleteAccount">Delete Account</a></li>
+            </ul>
+        </div><!--nav bar ends here-->
+
+        <div class="col-md-9" ng-controller="farmerProfileController">
+
+            <div class="col-md-8">
+                <form class="form-horizontal" ng-submit="updateFarmerProfile()">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Form Name</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="first_name">First Name</label>
+                        <div class="col-md-4">
+                            <input id="first_name" name="first_name" type="text" placeholder="" class="form-control input-md" required
+                                   ng-model="farmer.firstname">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="last_name">Last Name</label>
+                        <div class="col-md-4">
+                            <input id="last_name" name="last_name" type="text" placeholder="" class="form-control input-md" required
+                                   ng-model="farmer.lastname" >
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="address1">Address1</label>
+                        <div class="col-md-4">
+                            <input id="address1" name="address1" type="text" placeholder="" class="form-control input-md" required
+                                   ng-model="farmer.address1">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="address2">Address2</label>
+                        <div class="col-md-4">
+                            <input id="address2" name="address2" type="text" placeholder="" class="form-control input-md"
+                                   ng-model="farmer.address2" >
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="city">City</label>
+                        <div class="col-md-4">
+                            <input id="city" name="city" type="text" placeholder="" class="form-control input-md" required
+                                   ng-model="farmer.city">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="state">State</label>
+                        <div class="col-md-4">
+                            <input id="state" name="state" type="text" placeholder="" class="form-control input-md" required=""
+                                   ng-model="farmer.state" >
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="zipcode">Zip Code</label>
+                        <div class="col-md-4">
+                            <input id="zipcode" name="zipcode" type="number" min="0" max="99999" placeholder="" class="form-control input-md" required
+                                   ng-model="farmer.zipcode">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="phone">Phone</label>
+                        <div class="col-md-4">
+                            <input id="phone" name="phone" type="number" min="0" max="9999999999" placeholder="" class="form-control input-md" required
+                                   ng-model="farmer.phone_number" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="update"></label>
+                        <div class="col-md-4">
+                            <button id="update" name="update" class="btn btn-primary ">Update</button>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success" ng-show="success">
+                        <strong>Details has been updated successfully</strong>
+                    </div>
+                </fieldset>
+            </form>
+            </div>
+
+            <div class="col-md-4">
+                <h3>Add a Video.</h3>
+
+                <input type="file" accept="video/*" value="Upload profilevid"
+                       class="btn btn-success" name="profilevideo"
+                       onchange="readURLVideo(this)"> <br />
+<!--                <video id="profilevideo" style="height: 200px; width: 220px;"
+                       controls src="movie.mp4">
+                </video>-->
+
+            </div>
+            <input type="hidden" name="hiddenvideo" id="hiddenvideo" />
+            <a type="button" class="btn btn-success" ng-click="addMedia()">upload</a>
+            <a type="button" class="btn btn-success" ng-init="getVideo()">get Video</a>
+            <video id="myvideo" style="height: 200px; width: 220px;"
+                   controls src="movie.mp4">
+            </video>
+        </div>
+    </div><!--row ends here-->
+</div><!--main container ends here-->
+<script>
+    function readURLVideo(input) {
+
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#myvideo')
+                        .attr('src', e.target.result)
+                        .width(270)
+                        .height(200);
+
+                document.getElementById('hiddenvideo').value = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>

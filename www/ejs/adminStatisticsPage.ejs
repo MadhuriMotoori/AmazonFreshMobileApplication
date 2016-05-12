@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-md-3" ng-controller="navBarController">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">Approve Requests</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.reviews">View Reviews</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.statistics" >Statistics</a></li>
+                <li role="presentation" ng-class="{active:isSelected(4)}">
+                    <a ng-click="select(4)" aria-controls="bill details" role="tab" ui-sref="app.billDetails">Bill Details</a></li>
+                <li role="presentation" ng-class="{active:isSelected(5)}">
+                    <a ng-click="select(5)" aria-controls="my profile" role="tab" ui-sref="app.adminProfile">My Profile</a></li>
+                <li role="presentation" ng-class="{active:isSelected(6)}">
+                    <a ng-click="select(6)" aria-controls="my profile" role="tab" ui-sref="app.rides">View Rides Graph</a></li>
+                <li role="presentation" ng-class="{active:isSelected(7)}">
+                    <a ng-click="select(7)" aria-controls="fetch" role="tab" ui-sref="app.fetchFarmersCustomers">Fetch Farmers/Customers</a></li>
+                <li role="presentation" ng-class="{active:isSelected(8)}">
+                    <a ng-click="select(8)" aria-controls="fetch" role="tab" ui-sref="app.search">Search</a></li>
+                <li role="presentation" ng-class="{active:isSelected(9)}">
+                    <a ng-click="select(9)" aria-controls="fetch" role="tab" ui-sref="app.deliveryStatus">DeliveryStatusUpdate</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-10" ng-controller="revenueController" ng-init="statistics()">
+                    <div class="row" >
+                        <form class="form-group">
+
+                            <input type="submit" class="form-control" value="revenue per day" style="background-color: green;color:white;width:200px;">
+
+
+
+                        </form>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <strong>From date:</strong><input type="date" class="form-control" ng-model="from1date" ng-min="{{to1date}}">
+                    </div>
+                    <div class="col-md-4">
+                        <strong>To date:</strong><input type="date" class="form-control" ng-model="to1date" ng-max="{{from1date}}">
+                    </div>
+                    <div class="col-md-2">
+                        <<input type="submit" class="form-control" value="Go" style="background-color: darkgreen;color:white">
+                    </div>
+                </div>
+
+                <div id="container">Placeholder for chart
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+
+<div class="container-fluid customer-main-container"  >
+    <div class="row customer-row" style="margin-top:10px">
+            <div class="row row-contents">
+                <div class="col-sm-12 customer-products" ng-init="customerDetails">
+                    <div class="container-fluid">
+                        <div class="container-fluid" >
+                            <a type="button" class="btn pull-right {{productsEmpty}}" style="color: #0066bb;margin-right: 100px" ng-init="getMore()" ng-click="getMore()"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span>Next</a>
+                            <!--<div ng-hide="{{disabled}}" style="color: red">There are no more products</div>-->
+                        </div>
+                        <ul class="list-unstyled" >
+                            <!-- <li ng-repeat="x in customerDetails | startFrom:currentPage*pageSize | limitTo:pageSize">-->
+                            <li ng-repeat="x in items">
+                                <div class="col-sm-3 product-temp" >
+                                    <a type="button" class="btn" ui-sref="app.productDetails({foo:'fooval',productid:x.productId})">
+                                        <div class="product-image-box">
+                                            <img src="{{x.image}}" class="img-responsive" alt="" />
+                                        </div>
+                                    </a>
+                                    <h6 class="temp-text"><strong>${{x.productPrice}}</strong></h6>
+                                    <h6 class="temp-text" ng-if="showRealAmazonPrice(x.amazonPrice)"><strong>Amazon Price:${{x.amazonPrice}}</strong></h6>
+                                    <h5 class="temp-text">{{x.productName}}</h5>
+                                    <h6 class="temp-text">
+                                        <a ui-sref="app.farmerProducts({foo:'fooval',farmerId:x.productVendor})">
+                                            <span style="font-color:#0accff"><u>{{x.productVendor}}</u></span>
+                                        </a>
+                                    </h6>
+                                    <button type="button" ng-click="addToCart(x)" class="btn btn-success customer-mybtn col-sm-offset-3" name="button">Add to Cart</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!--sub row 2 ends here--->
+        </div><!-- products container ends here--->
+
+
+
+        <div class="col-md-3 col-sm-3" style="margin-top: 20px";>
+            <div class="customer-right col-md-12 customer-mycols" >
+                <div class="container-fluid checkout-temp">
+                    <button type="button" ng-click="checkout()" class="btn btn-success btn-block mybtn">Proceed to Checkout</button>
+                    <div style="margin-top: 10px;margin-bottom: 10px;">
+                        <div class="mainContent" ng-repeat="cart in addedToCartItems" style="font-size: 15px;">
+                            <input type="button" value="+" ng-click="changeQuantity(cart,1)"/>
+                            <input type="button" value="-" ng-click="changeQuantity(cart,0)"/>
+                            <span><b>Detail: </b>{{cart.productName}},</span>
+                            <span><b>Quantity: </b>{{cart.quantity}},</span>
+                            <span><b>Amount: </b>{{cart.productPrice}}</span>
+                            <span class="glyphicon glyphicon-remove-sign" ng-click="removeFromCart(cart)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--checkout div ends-->
+    </div><!-- row container ends here-->
+
+<div class="row row-contents">
+    <div  class="col-sm-3">
+        <button type="button" ui-sref="app.deleteCustomer"  class="btn btn-success customer-mybtn " name="button">Delete Account</button>
+    </div>
+    <div class="col-sm-3">
+        <input type="text" ng-model="searchval"  placeholder="Products,Farmer's">
+        <span ><a type="button" ui-sref="app.search({query:'query',key:searchval})"><span class="glyphicon glyphicon-search"></span></a></span>
+    </div>
+
+    <div class="col-sm-3"  ng-controller="farmerProductsController">
+        <a type="button" class="btn btn-success btn-xs" ng-click= "logout()">Logout</a>
+    </div>
+    <div class="col-sm-3">
+        <a type="button" class="btn btn-success btn-xs " ui-sref="app.viewOrders()">View Orders</a>
+    </div>
+</div>
+</div><!--main container ends here.....humph,i thought it's never gonna end-->

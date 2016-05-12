@@ -1,0 +1,48 @@
+<div class="container-fluid farmer-main-container"  >
+    <div class="row farmer-row">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="container-fluid"  ng-init="loadMore()" >
+            <a type="button" class="btn pull-right {{productsEmpty}}" style="color: #0066bb;margin-right: 100px" ng-click="loadMore()"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span>Next</a>
+            <!--<div ng-hide="{{disabled}}" style="color: red">There are no more products</div>-->
+        </div>
+        <div class="col-sm-7 farmer-products"  ng-init="images">
+            <div class="container-fluid" >
+                <ul class="list-unstyled">
+
+                    <li ng-repeat="x in images">
+                        <div class="col-sm-3 product-temp" style="background-color:white;border:1px solid darkgrey;z-index:2;margin-top:5px;">
+                            <a type="button" class="btn" ui-sref="app.productDetails({foo:'fooval',productid:x.productId})">
+                            <img ng-src="{{x.image}}" class="img-responsive" alt="" />
+                            </a>
+                            <h6 class="temp-text"><strong>${{x.productPrice}}</strong></h6>
+                            <h5 class="temp-text">{{x.productName}}</h5>
+                            <button type="button" ng-click="addToCart(x)" class="btn btn-success farmer-mybtn col-sm-offset-2" name="button">Add to Cart</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-sm-3">
+            <div class="farmer-right col-sm-12 farmer-mycols" >
+                <div class="container-fluid checkout-temp">
+                    <button type="button" class="btn btn-success btn-block mybtn" ng-click="checkout()">Proceed to Checkout</button>
+                    <div style="margin-top: 10px;margin-bottom: 10px;">
+                        <div class="mainContent" ng-repeat="cart in addedToCartItems" style="font-size: 15px;">
+                            <input type="button" value="+" ng-click="changeQuantity(cart,1)"/>
+                            <input type="button" value="-" ng-click="changeQuantity(cart,0)"/>
+                            <span><b>Detail: </b>{{cart.productName}},</span>
+                            <span><b>Quantity: </b>{{cart.quantity}},</span>
+                            <span><b>Amount: </b>{{cart.productPrice}}</span>
+                            <span class="glyphicon glyphicon-remove-sign" ng-click="removeFromCart(cart)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

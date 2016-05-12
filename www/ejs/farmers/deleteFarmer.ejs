@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-sm-3" ng-controller="navBarController">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">My Profile</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.farmeraddProduct">Add Product</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.farmerDeleteProduct({farmerId:farmer.vendor})">Delete Product</a></li>
+                <li role="presentation" ng-class="{active:isSelected(6)}">
+                    <a ng-click="select(6)" aria-controls="view statistics" role="tab" ui-sref="app.farmerUpdateProduct({farmerId:farmer.vendor})">Update Product</a></li>
+                <li role="presentation" ng-class="{active:isSelected(4)}">
+                    <a ng-click="select(4)" aria-controls="bill details" role="tab">View Reviews</a></li>
+                <li role="presentation" ng-class="{active:isSelected(5)}">
+                    <a ng-click="select(5)" aria-controls="delete account" ui-sref="app.deleteFarmer"
+                        role="tab">Delete your account</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-6">
+            <form class="form-horizontal" name="form"  ng-submit="farmerDelete()">
+                <fieldset>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <div class="alert alert-info">
+                            <strong>Would you like to delete your account?</strong>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="add_product"></label>
+                        <div class="col-sm-6">
+                            <button id="submit" name="submit" class="btn btn-primary" ng-click="deleteFarmer()">Delete Account</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+
+
+    </div><!--row ends-->
+</div><!--main container Ends-->

@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-md-3" ng-controller="navBarController">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">Approve Requests</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.reviews">View Reviews</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.statistics" >Statistics</a></li>
+                <li role="presentation" ng-class="{active:isSelected(4)}">
+                    <a ng-click="select(4)" aria-controls="bill details" role="tab" ui-sref="app.billDetails">Bill Details</a></li>
+                <li role="presentation" ng-class="{active:isSelected(5)}">
+                    <a ng-click="select(5)" aria-controls="my profile" role="tab" ui-sref="app.adminProfile">My Profile</a></li>
+                <li role="presentation" ng-class="{active:isSelected(6)}">
+                    <a ng-click="select(6)" aria-controls="my profile" role="tab" ui-sref="app.rides">View Rides Graph</a></li>
+                <li role="presentation" ng-class="{active:isSelected(7)}">
+                    <a ng-click="select(7)" aria-controls="fetch" role="tab" ui-sref="app.fetchFarmersCustomers">Fetch Farmers/Customers</a></li>
+                <li role="presentation" ng-class="{active:isSelected(8)}">
+                    <a ng-click="select(8)" aria-controls="fetch" role="tab" ui-sref="app.search">Search</a></li>
+                <li role="presentation" ng-class="{active:isSelected(9)}">
+                    <a ng-click="select(9)" aria-controls="fetch" role="tab" ui-sref="app.deliveryStatus">DeliveryStatusUpdate</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9" ng-controller="reviewsController">
+            <div class="row">
+                <div class="col-md-4" >
+                    <form name="productform" role="form"  style="margin-top: 80px;">
+                        <div ng-show="productselected" >
+                            <div class="form-group">
+                                <label>ProductID:</label>
+                                <input type="number" ng-model="product_id" id="productId" required>
+
+                                <div ng-hide="productId_type_error">
+                                    <strong><font color="red">Product Id should contain only numbers
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="productId_empty_error">
+                                    <strong><font color="red">Please input value for Product Id
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="productId_length_error">
+                                    <strong><font color="red">Please input Product Id length with in 11 numbers
+                                        </font></strong>
+                                </div>
+
+                                <div ng-show="unexpected_error">
+                                    <strong><font color="red">Unexpected error, please try again
+                                        </font></strong>
+                                </div>
+
+                                <div ng-show="no_id_product">
+                                    <strong><font color="red">No product exists with given id
+                                        </font></strong>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" >
+                                <button type="button" class="btn btn-success btn-md" id="go"
+                                        ng-disabled="productform.$invalid" ng-disabled="form.$invalid" ng-click="getProductReviews()"
+                                > View  Reviews</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="productModal" class="modal fade" role="dialog" >
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <p class="modal-title"
+                                   style="text-align: center; color: black; font-size: 18px;">Product Details
+                                </p>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductID : {{currentProduct.productId}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> FarmerID     : {{currentProduct.farmer_id}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductName     : {{currentProduct.productName}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductPrice     : ${{currentProduct.productPrice}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductDescription     : {{currentProduct.productDescription}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2" ng-repeat="review in currentProduct.reviews">
+                                        <label> Customer     : {{review.customer}}</label>
+                                        <label> Rating      :  {{review.rating}}</label><br>
+                                        <label> review      : {{review.comment}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductImage     : </label>
+                                        <img src="{{currentProduct.image}}" class="img-responsive" alt="" style="width:10%; margin-left: 100px"/>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

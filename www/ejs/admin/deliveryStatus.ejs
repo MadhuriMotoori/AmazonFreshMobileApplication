@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-md-3" ng-controller="navBarController">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">Approve
+                        Requests</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.reviews">View Reviews</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.statistics">Statistics</a>
+                </li>
+                <li role="presentation" ng-class="{active:isSelected(4)}">
+                    <a ng-click="select(4)" aria-controls="bill details" role="tab" ui-sref="app.billDetails">Bill Details</a></li>
+                <li role="presentation" ng-class="{active:isSelected(5)}">
+                    <a ng-click="select(5)" aria-controls="my profile" role="tab" ui-sref="app.adminProfile">My Profile</a></li>
+                <li role="presentation" ng-class="{active:isSelected(6)}">
+                    <a ng-click="select(6)" aria-controls="my profile" role="tab" ui-sref="app.rides">View Rides
+                        Graph</a></li>
+                <li role="presentation" ng-class="{active:isSelected(7)}">
+                    <a ng-click="select(7)" aria-controls="fetch" role="tab" ui-sref="app.fetchFarmersCustomers">Fetch
+                        Farmers/Customers</a></li>
+                <li role="presentation" ng-class="{active:isSelected(8)}">
+                    <a ng-click="select(8)" aria-controls="fetch" role="tab" ui-sref="app.search">Search</a></li>
+                <li role="presentation" ng-class="{active:isSelected(9)}">
+                    <a ng-click="select(9)" aria-controls="fetch" role="tab" ui-sref="app.deliveryStatus">DeliveryStatusUpdate</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9" ng-controller="deliveryStatusController">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <form name="productform" role="form"  style="margin-top: 80px;">
+                    <div  >
+                        <div class="form-group">
+                            <label>OrderID: </label>
+                            <input type="number" ng-model="product_id" id="productId" required>
+
+                            <div ng-hide="productId_type_error">
+                                <strong><font color="red">Order Id should contain only numbers
+                                    </font></strong>
+                            </div>
+
+                            <div ng-hide="productId_empty_error">
+                                <strong><font color="red">Please input value for Order Id
+                                    </font></strong>
+                            </div>
+
+                            <div ng-hide="productId_length_error">
+                                <strong><font color="red">Please input Order Id length with in 11 numbers
+                                    </font></strong>
+                            </div>
+
+                            <div ng-show="unexpected_error">
+                                <strong><font color="red">Unexpected error, please try again
+                                    </font></strong>
+                            </div>
+
+                            <div ng-show="no_id_product">
+                                <strong><font color="red">No order exists with given id
+                                    </font></strong>
+                            </div>
+
+
+                            <div ng-show="order_delivered">
+                                <strong><font color="green">Order is delivered
+                                    </font></strong>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" >
+                            <button type="button" class="btn btn-success btn-md"
+                                    ng-disabled="productform.$invalid" ng-disabled="form.$invalid" ng-click="deliverOrder()"
+                            > Deliver Order</button>
+
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+

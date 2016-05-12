@@ -1,0 +1,250 @@
+.row-header {
+  margin: 0px auto;
+  padding: 0px 0px;
+}
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+}
+.row-footer {
+  margin: 0px auto;
+  padding: 20px 0px;
+  background-color: #AfAfAf;
+}
+.jumbotron {
+  margin: 0px auto;
+  padding: 70px 30px;
+  background: #7986CB;
+  color: floralwhite;
+}
+.carousel {
+  background: #1a237e;
+}
+.carousel .item {
+  height: 300px;
+}
+.carousel .item img {
+  left: 0;
+  min-height: 300px;
+  position: absolute;
+  top: 0;
+}
+.navbar-inverse {
+  background: #3B4146;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a {
+  background: #3B4146;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a:hover {
+  background: #3B4146;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a:focus {
+  background: #3B4146;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .open > a {
+  background: #3B4146;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .open > a:hover {
+  background: #3B4146;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background: #1a237e;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+  background-color: #3B4146;
+  color: #eeeeee;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #ffffff;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu {
+  background-color: #303f9f;
+  color: #eeeeee;
+}
+address {
+  color: #0f0f0f;
+  font-size: 80%;
+  margin: 0px;
+}
+body {
+  align: center;
+  padding: 50px 0px 0px 0px;
+  z-index: 0;
+}
+.tab-content {
+  border-bottom: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  padding: 10px;
+}
+.affix {
+  top: 100px;
+}
+#carouselButtons {
+  bottom: 0px;
+  position: absolute;
+  right: 0px;
+}
+
+
+    #custom-search-form {
+        margin:0;
+        margin-top: 5px;
+        padding: 0;
+    }
+ 
+    #custom-search-form .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-transition: width  0.2s ease-in-out;
+    -moz-transition:width  0.2s ease-in-out;
+    -o-transition: width  0.2s ease-in-out;
+    transition: width  0.2s ease-in-out;
+    }
+ 
+    #custom-search-form button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }   
+    .search-query:focus{
+        width: 260px;
+    }   
+
+body {
+   
+    margin: 0px;
+}	
+#headerNav {
+	 background-color: #393F44;
+    color: #fff;
+    height: 45px;
+    min-width: 1015px;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/taskbar-bg.png);
+    border: 0px solid #ccc;
+    border-bottom-width: 0px;
+}
+#searchBar #searchArea {
+    position: absolute;
+    right: 45px;
+    left: 57px;
+    cursor: text;
+    height: 34px;
+    line-height: 34px;
+    overflow: hidden;
+}
+#searchBar #searchArea input {
+    width: 100%;
+    padding-right: 3px;
+}
+#searchBar #searchAutocomplete, #searchBar input:focus {
+    -webkit-appearance: textfield;
+    box-sizing: content-box;
+    background: transparent;
+    border: none;
+    outline: 0 none;
+}
+#searchBar {
+    left: 142px;
+}
+
+#searchBar {
+    display: inline-block;
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/searchbar-middle.png);
+    background-repeat: repeat-x;
+    position: relative;
+    left: 135px;
+    height: 34px;
+    width: 500px;
+}
+
+#searchBar #goButton {
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    width: 41px;
+    padding-top : 10px;
+}
+.imgContainer{
+    float:left;
+}
+.image123{
+margin-top:50px;
+}
+
+/*custom directive styles*/
+.rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+ul.rating {
+    display: inline-block;
+}
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.rating .filled {
+    color: green;
+}
+
+.product-temp{
+    border : 1px solid grey;
+    width: 200px;
+    height: 300px;
+    margin: 4px;
+}
+
+.product-image-box{
+    height: 150px;
+}
+
+.temp-text{
+    text-align: center;
+}
+
+.customer-products{
+    margin-left:70px;
+}
+

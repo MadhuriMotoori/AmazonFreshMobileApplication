@@ -1,0 +1,70 @@
+<div class="container" style="padding-bottom: 200px;padding-top: 100px;">
+	<div class="row ">
+		<div class="col-md-5 col-md-offset-3">
+			<form name="form"  role="form">
+				<div class="form-group">
+					<h2>Login</h2>
+				</div>
+				<div ng-hide="not_approved_error">
+					<strong><font color="red">Your account is not approved yet, please try after some time.
+						</font></strong>
+				</div>
+				<div class="form-group"
+					 ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+					<label for="email">Email</label> <input type="text"
+															name="email" id="email" class="form-control"
+															ng-model="email" required /> <span
+							ng-show="form.email.$dirty && form.email.$error.required"
+							class="help-block">Email is required</span>
+					<div ng-hide="email_not_found_error">
+						<strong><font color="red">Incorrect email, please check.
+							</font></strong>
+					</div>
+				</div>
+				<div class="form-group"
+					 ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+					<label for="password">Password</label> <input type="password"
+																  name="password" id="password" class="form-control"
+																  ng-model="password" required /> <span
+							ng-show="form.password.$dirty && form.password.$error.required"
+							class="help-block">Password is required</span>
+
+					<div ng-hide="password_incorrect_error">
+						<strong><font color="red">Incorrect password, please check.
+							</font></strong>
+					</div>
+				</div>
+
+				<div class="form-group"
+					 ng-class="{ 'has-error': form.usertype.$dirty && form.usertype.$error.required }">
+					<label class="radio-inline">
+						<input type="radio" name="usertype" id="usertype" ng-model="usertype" value="customer" required>Customer
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="usertype" id="usertype" ng-model="usertype" value="farmer">Farmer
+					</label>
+					<span
+							ng-show="form.usertype.$dirty && form.usertype.$error.required"
+							class="help-block">Please select a role</span>
+				</div>
+
+				<div ng-hide="unexpected_error">
+					<strong><font color="red">Unexpected error, please try again
+						</font></strong>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-success btn-lg col-sm-12"
+							type="submit" ng-click="login()"><div>Sign in</div></button>
+				</div>
+				<div class="form-group" style="margin-top: 80px;">
+					<font size="4px">New Amazon.com customer? <a ui-sref="app.signup">Create a new Amazon account</a></font>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+

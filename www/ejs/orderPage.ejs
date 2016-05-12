@@ -1,0 +1,106 @@
+<style>
+    #right{
+        border-style:ridge;
+        padding:5px;
+        border-radius:5px;
+
+    }
+    #ordercontainer{
+        padding:5px;
+        border-radius:5px;
+        margin-left:5px;
+    }
+    .container1{
+        height:100px;
+        margin-bottom:5px;
+        border-style:ridge;
+        background-color:#c3f263;
+    }
+    hr {
+        border:none;
+        border-top:3px dotted;
+        height:1px;
+        width:100%;
+    }
+    #placeorder{
+        margin-top: 10px;
+    }
+    .top-buffer { margin-top:100px;margin-bottom: 50px; }
+    #cart{
+        background-color:ghostwhite;
+
+    }
+</style>
+<form class="form group" ng-submit="placeOrder()" ng-init="customerDetails()" >
+    <div class="row top-buffer">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <img src="/images/order.png">
+            <div class="row" id="row2container">
+                <div class="col-xs-12 col-sm-6 col-md-4" id="ordercontainer">
+                    <div id="ordercontainer" class="container1">
+                        <strong> <p>Shipping address:</p></strong>
+                        {{address1}}
+                        {{address2}}
+                        {{city}}
+                        {{state}}
+                    </div>
+                    <div id="ordercontainer" class="container1">
+                        <strong> <p>Delivery time:</p></strong> May 1st 2016
+                    </div>
+                    <div id="ordercontainer" class="container1">
+                        <strong> <p>Delivery instructions:<p></strong>
+                        We have launched hyperfast delivery service
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4" id="ordercontainer">
+                    <div id="ordercontainer" class="container1">
+                        <strong><p>Card Details:</p></strong>{{cardDetails}}
+                        {{card_num}}
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3" id="placeorder">
+                    <input type=submit class="form-control" value="Place Order" style="background-color: forestgreen;color:white">
+                    <img src="/images/amazonorder.jpg" style="width:170px;height:170px">
+
+                    <hr>
+                    <h4>Total Price = ${{total_price}}</h4>
+                </div></div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-5" >
+        <strong><h3 style="margin-left:175px">Items in your cart</h3></strong>
+        <div class="col-md-4">
+         <strong>ProductName</strong>
+        </div>
+        <div class="col-md-4" >
+           <strong>Quantity</strong>
+        </div>
+        <div class="col-md-4" >
+            <strong>Price</strong>
+        </div>
+    </div>
+</div>
+<div class="row"  ng-init="cartItems()" style="margin-bottom: 20px;">
+    <div class="col-md-5" >
+        <div class="col-md-4" id="cart" >
+    <div ng-repeat="p in productName track by $index">
+    {{p}}
+    </div>
+            </div>
+    <div class="col-md-4" id="cart">
+        <div ng-repeat="q in quantity track by $index">
+            {{q}}
+        </div>
+
+</div>
+    <div class="col-md-4" id="cart">
+        <div ng-repeat="t in total track by $index">
+            {{t}}
+        </div>
+
+    </div>
+    </div>
+</div>

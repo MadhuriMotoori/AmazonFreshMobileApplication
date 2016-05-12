@@ -1,0 +1,25 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-3">
+                <a ui-sref="app"><img src="/images/amazonfresh.png" height=40 width=200
+                                      style="margin-top: -10px;" ></a>
+            </div>
+
+            <div class="col-sm-5">
+                <input type="text" ng-model="searchval"  placeholder="Products,Farmer's">
+                <span ><a type="button" ui-sref="app.search({query:'query',key:searchval})"><span class="glyphicon glyphicon-search"></span></a></span>
+            </div>
+
+            <div class="col-sm-2 pull-right"  ng-controller="farmerProductsController">
+                <a type="button" class="btn btn-success btn-xs" ng-click= "logout()">Logout</a>
+            </div>
+            <div class="col-sm-2 pull-right">
+                <a type="button" class="btn btn-success btn-xs " ui-sref="app.viewOrders()">View Orders</a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+

@@ -1,0 +1,238 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-md-3" ng-controller="navBarController">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">Approve Requests</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.reviews">View Reviews</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.statistics" >Statistics</a></li>
+                <li role="presentation" ng-class="{active:isSelected(4)}">
+                    <a ng-click="select(4)" aria-controls="bill details" role="tab" ui-sref="app.billDetails">Bill Details</a></li>
+                <li role="presentation" ng-class="{active:isSelected(5)}">
+                    <a ng-click="select(5)" aria-controls="my profile" role="tab" ui-sref="app.adminProfile">My Profile</a></li>
+                <li role="presentation" ng-class="{active:isSelected(6)}">
+                    <a ng-click="select(6)" aria-controls="my profile" role="tab" ui-sref="app.rides">View Rides Graph</a></li>
+                <li role="presentation" ng-class="{active:isSelected(7)}">
+                    <a ng-click="select(7)" aria-controls="fetch" role="tab" ui-sref="app.fetchFarmersCustomers">Fetch Farmers/Customers</a></li>
+                <li role="presentation" ng-class="{active:isSelected(8)}">
+                    <a ng-click="select(8)" aria-controls="fetch" role="tab" ui-sref="app.search">Search</a></li>
+                <li role="presentation" ng-class="{active:isSelected(9)}">
+                    <a ng-click="select(9)" aria-controls="fetch" role="tab" ui-sref="app.deliveryStatus">DeliveryStatusUpdate</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4" ng-controller="AllCustomersController">
+                        <div class="row">
+                            <button  class="btn btn-md btn-success pull-right" type="button" ng-click="toggleButton()" style="width:85%">
+                                {{ showCustomerFlag ?  'Hide All Customers Details' : 'Show All Customers Details'}}
+                            </button>
+                            <div ng-show="database_error">
+                                <strong><font color="red">Unexpected error, Please try after some time
+                                    </font></strong>
+                            </div>
+                            <div ng-show="customer_requests" class="emptyDiv">
+                                <button class="btn btn-danger requestbutton2 pull-right">No customers</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div  ng-show="showCustomerFlag" class="requestscontainer" >
+                                <div >
+                                    <a type="button" class="btn pull-right {{productsEmpty}}" style="color: #0066bb;margin-right: 100px" ng-init="showCustomers()" ng-click="showCustomers()"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span>Next</a>
+                                    <!--<div ng-hide="{{disabled}}" style="color: red">There are no more products</div>-->
+                                </div>
+                                <ul ng-repeat="customer in customers">
+                                    <li>
+                                        <button class="btn requestbutton" data-toggle="modal"
+                                                data-target="#customersmodal" ng-click="currentValue(customer)">{{customer.firstname}} {{customer.lastname}}</button>
+                                        <div id="customersmodal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <p class="modal-title"
+                                                           style="text-align: center; color: black; font-size: 18px;">Customer Details
+                                                            </p>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form class="form-horizontal">
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Customer SSN  : {{currentCustomer.customer_id}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Firstname     : {{currentCustomer.firstname}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Lastname     : {{currentCustomer.lastname}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Address      : {{currentCustomer.address1}},{{currentCustomer.address2}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> City          : {{currentCustomer.city}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> State         : {{currentCustomer.state}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Zipcode       : {{currentCustomer.zipcode}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Phonenumber: {{currentCustomer.phone_number}}</label>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" ng-controller="AllFarmersController" >
+                        <div class="row">
+                            <button  class="btn btn-md btn-success pull-right" type="button" ng-click="toggleButton()" style="width:85%">
+                                {{showFarmerFlag ? 'Hide All Farmer Details' :'View All Farmers Details'}}
+                            </button>
+                            <div ng-show="database_error">
+                                <strong><font color="red">Unexpected error, Please try after some time
+                                    </font></strong>
+                            </div>
+                            <div ng-show="farmer_requests" class="emptyDiv">
+                                <button class="btn btn-danger requestbutton2 pull-right">No farmers available</button>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div ng-show="showFarmerFlag" class="requestscontainer">
+                                <div >
+                                    <a type="button" class="btn pull-right {{productsEmpty}}" style="color: #0066bb;margin-right: 100px" ng-init="showFarmers()" ng-click="showFarmers()"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span>Next</a>
+                                    <!--<div ng-hide="{{disabled}}" style="color: red">There are no more products</div>-->
+                                </div>
+                                <ul ng-repeat="farmer in farmers">
+                                    <li>
+                                        <button class="btn requestbutton" data-toggle="modal"
+                                                data-target="#farmersmodal" ng-click="currentValue(farmer)">{{farmer.firstname}} {{farmer.lastname}}</button>
+                                        <div id="farmersmodal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <p class="modal-title"
+                                                           style="text-align: center; color: black; font-size: 18px;">Farmer Details
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form class="form-horizontal">
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Customer SSN  : {{currentFarmer.farmer_id}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Firstname     : {{currentFarmer.firstname}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Lastname     : {{currentFarmer.lastname}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Address      : {{currentFarmer.address1}},{{currentFarmer.address2}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> City          : {{currentFarmer.city}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> State         : {{currentFarmer.state}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Zipcode       : {{currentFarmer.zipcode}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> Phonenumber: {{currentFarmer.phone_number}}</label>
+                                                            </div>
+                                                        </form>
+                                                        <div ng-show="addedFarmer">
+                                                            <button class="btn btn-danger requestbutton">Farmer successfully added</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4" ng-controller="AllProductsController">
+                        <div class="row">
+                            <button  class="btn btn-md btn-success pull-right" type="button" ng-click="toggleButton()" style="width:85%">
+                                {{ showProductFlag ?  'Hide All Products Details' : 'Show All Products Details'}}
+                            </button>
+                            <div ng-show="database_error">
+                                <strong><font color="red">Unexpected error, Please try after some time
+                                    </font></strong>
+                            </div>
+                            <div ng-show="product_requests" class="emptyDiv">
+                                <button class="btn btn-danger requestbutton2 pull-right">No products available</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div  ng-show="showProductFlag" class="requestscontainer">
+                                <div >
+                                    <a type="button" class="btn pull-right {{productsEmpty}}" style="color: #0066bb;margin-right: 100px" ng-init="showProducts()" ng-click="showProducts()"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span>Next</a>
+                                    <!--<div ng-hide="{{disabled}}" style="color: red">There are no more products</div>-->
+                                </div>
+                                <ul ng-repeat="product in products">
+                                    <li>
+                                        <button class="btn requestbutton" data-toggle="modal"
+                                                data-target="#productRequests" ng-click="currentValue(product)">{{product.productName}} </button>
+                                        <div id="productRequests" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <p class="modal-title"
+                                                           style="text-align: center; color: black; font-size: 18px;">Product Details
+                                                            </p>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form class="form-horizontal">
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> ProductID : {{currentProduct.productId}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> FarmerID     : {{currentProduct.farmer_id}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> ProductName     : {{currentProduct.productName}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> ProductPrice     : ${{currentProduct.productPrice}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> ProductDescription     : {{currentProduct.productDescription}}</label>
+                                                            </div>
+                                                            <div class="col-md-10 col-md-offset-2">
+                                                                <label> ProductImage     : </label>
+                                                                <img src="{{currentProduct.image}}" class="img-responsive" alt="" style="width:10%; margin-left: 100px"/>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        </div>
+</div>

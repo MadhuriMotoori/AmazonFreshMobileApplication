@@ -1,0 +1,340 @@
+<div class="container">
+    <div class="row row-content">
+        <div class="col-md-3" ng-controller="navBarController">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" ng-class="{active:isSelected(1)}">
+                    <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">Approve
+                        Requests</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}">
+                    <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.reviews"   >View Reviews</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}">
+                    <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.statistics">Statistics</a>
+                </li>
+                <li role="presentation" ng-class="{active:isSelected(4)}">
+                    <a ng-click="select(4)" aria-controls="bill details" role="tab" ui-sref="app.billDetails">Bill Details</a></li>
+                <li role="presentation" ng-class="{active:isSelected(5)}">
+                    <a ng-click="select(5)" aria-controls="my profile" role="tab" ui-sref="app.adminProfile">My Profile</a></li>
+                <li role="presentation" ng-class="{active:isSelected(6)}">
+                    <a ng-click="select(6)" aria-controls="my profile" role="tab" ui-sref="app.rides">View Rides
+                        Graph</a></li>
+                <li role="presentation" ng-class="{active:isSelected(7)}">
+                    <a ng-click="select(7)" aria-controls="fetch" role="tab" ui-sref="app.fetchFarmersCustomers">Fetch
+                        Farmers/Customers</a></li>
+                <li role="presentation" ng-class="{active:isSelected(8)}">
+                    <a ng-click="select(8)" aria-controls="fetch" role="tab" ui-sref="app.search">Search</a></li>
+                <li role="presentation" ng-class="{active:isSelected(9)}">
+                    <a ng-click="select(9)" aria-controls="fetch" role="tab" ui-sref="app.deliveryStatus">DeliveryStatusUpdate</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9" ng-controller="adminSearchController">
+            <div class="row">
+                <div class="col-md-4" >
+                    <form name="form" role="form">
+                        <div class="form-group">
+                            <label for="graphtype">Search</label>
+                            <select class="form-control" id="userinput" ng-model="userinput" required>
+                                <option value="">Type</option>
+                                <option value="customer">Customer</option>
+                                <option value="product">Product</option>
+                                <option value="farmer">Farmer</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success btn-md col-md-12"
+                                    ng-disabled="form.$invalid"   ng-click="toggle()" > Submit</button>
+                        </div>
+                    </form>
+
+                    <form name="customerform" role="form"  style="margin-top: 80px;">
+                        <div ng-show="customerselected">
+                            <div class="form-group">
+
+                                <label> Customer SSN :</label><br>
+                                <div class="input-group">
+                                    <input type="text" name="user.customer_id_1" id="user.customer_id_1"
+                                           class="form-control" placeholder="123"
+                                           ng-model="user.customer_id_1" required/> <span
+                                            class="input-group-addon" required>-</span>
+                                    <input type="text" name="user.customer_id_2" id="user.customer_id_2"
+                                           class="form-control" placeholder="12"
+                                           ng-model="user.customer_id_2" required/> <span
+                                            class="input-group-addon" required>-</span>
+                                    <input type="text" name="user.customer_id_3" id="user.customer_id_3"
+                                           class="form-control" placeholder="1234"
+                                           ng-model="user.customer_id_3" required/>
+                                </div>
+
+                                <div ng-hide="ssn_number_error">
+                                    <strong><font color="red">Please enter numbers for SSN
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="ssn_empty_error">
+                                    <strong><font color="red">Please enter SSN
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="ssn_format_error">
+                                    <strong><font color="red">SSN must be in (123-12-1234) format
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="ssn_exists_error">
+                                    <strong><font color="red">No Customer available for given ssn
+                                        </font></strong>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-success btn-md"
+                                        ng-disabled="customerform.$invalid" ng-click="searchCustomer()"> View Customer
+                                    Details</button>
+
+                                <div ng-show="unexpected_error">
+                                    <strong><font color="red">Unexpected error, please try again
+                                        </font></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <form name="farmerform" role="form"  style="margin-top: 80px;">
+                        <div ng-show="farmerselected">
+                            <div class="form-group">
+
+                                <label> Farmer SSN :</label><br>
+                                <div class="input-group">
+                                    <input type="text" name="user.customer_id_1" id="user.customer_id_1"
+                                           class="form-control" placeholder="123"
+                                           ng-model="user.customer_id_1" required/> <span
+                                            class="input-group-addon" required>-</span>
+                                    <input type="text" name="user.customer_id_2" id="user.customer_id_2"
+                                           class="form-control" placeholder="12"
+                                           ng-model="user.customer_id_2" required/> <span
+                                            class="input-group-addon" required>-</span>
+                                    <input type="text" name="user.customer_id_3" id="user.customer_id_3"
+                                           class="form-control" placeholder="1234"
+                                           ng-model="user.customer_id_3" required/>
+                                </div>
+
+                                <div ng-hide="ssn_number_error">
+                                    <strong><font color="red">Please enter numbers for SSN
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="ssn_empty_error">
+                                    <strong><font color="red">Please enter SSN
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="ssn_format_error">
+                                    <strong><font color="red">SSN must be in (123-12-1234) format
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="ssn_exists_error">
+                                    <strong><font color="red">No Farmer available for given ssn
+                                        </font></strong>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-success btn-md"
+                                        ng-disabled="farmerform.$invalid" ng-click="searchFarmer()"> View Farmer
+                                    Details</button>
+
+                                <div ng-show="unexpected_error">
+                                    <strong><font color="red">Unexpected error, please try again
+                                        </font></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <form name="productform" role="form"  style="margin-top: 80px;">
+                        <div ng-show="productselected" >
+                            <div class="form-group">
+                                <label>ProductID:</label>
+                                <input type="number" ng-model="product_id" id="productId" required>
+
+                                <div ng-hide="productId_type_error">
+                                    <strong><font color="red">Product Id should contain only numbers
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="productId_empty_error">
+                                    <strong><font color="red">Please input value for Product Id
+                                        </font></strong>
+                                </div>
+
+                                <div ng-hide="productId_length_error">
+                                    <strong><font color="red">Please input Product Id length with in 11 numbers
+                                        </font></strong>
+                                </div>
+
+                                <div ng-show="unexpected_error">
+                                    <strong><font color="red">Unexpected error, please try again
+                                        </font></strong>
+                                </div>
+
+                                <div ng-show="no_id_product">
+                                    <strong><font color="red">No product exists with given id
+                                        </font></strong>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" >
+                                <button type="button" class="btn btn-success btn-md" id="go"
+                                        ng-disabled="productform.$invalid" ng-disabled="form.$invalid" ng-click="searchProduct()"
+                                > View  Product</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+
+                <!-- customer modal -->
+
+                <div id="customerModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <p class="modal-title"
+                                   style="text-align: center; color: black; font-size: 18px;">Customer
+                                    Details</p>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Customer SSN  : {{currentCustomer.customer_id}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Firstname     : {{currentCustomer.firstname}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Lastname     : {{currentCustomer.lastname}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Address      : {{currentCustomer.address1}},{{currentCustomer.address2}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> City          : {{currentCustomer.city}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> State         : {{currentCustomer.state}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Zipcode       : {{currentCustomer.zipcode}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Phonenumber: {{currentCustomer.phone_number}}</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- farmer modal -->
+
+                <div id="farmerModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <p class="modal-title"
+                                   style="text-align: center; color: black; font-size: 18px;">Farmer Details
+                                </p>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Customer SSN  : {{currentFarmer.farmer_id}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Firstname     : {{currentFarmer.firstname}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Lastname     : {{currentFarmer.lastname}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Address      : {{currentFarmer.address1}},{{currentFarmer.address2}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> City          : {{currentFarmer.city}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> State         : {{currentFarmer.state}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Zipcode       : {{currentFarmer.zipcode}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> Phonenumber: {{currentFarmer.phone_number}}</label>
+                                    </div>
+                                </form>
+                                <div ng-show="addedFarmer">
+                                    <button class="btn btn-danger requestbutton">Farmer successfully added</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- product modal -->
+
+                <div id="productModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <p class="modal-title"
+                                   style="text-align: center; color: black; font-size: 18px;">Product Details
+                                </p>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductID : {{currentProduct.productId}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> FarmerID     : {{currentProduct.farmer_id}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductName     : {{currentProduct.productName}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductPrice     : ${{currentProduct.productPrice}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductDescription     : {{currentProduct.productDescription}}</label>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <label> ProductImage     : </label>
+                                        <img src="{{currentProduct.image}}" class="img-responsive" alt="" style="width:10%; margin-left: 100px"/>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="container farmer-main-container"  >
+
+    <div class="col-sm-3" ng-controller="navBarController">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" ng-class="{active:isSelected(1)}">
+                <a ng-click="select(1)" aria-controls="approve requests" role="tab" ui-sref="app">My Profile</a></li>
+            <li role="presentation" ng-class="{active:isSelected(2)}">
+                <a ng-click="select(2)" aria-controls="view reviews" role="tab" ui-sref="app.farmeraddProduct">Add Product</a></li>
+            <li role="presentation" ng-class="{active:isSelected(3)}">
+                <a ng-click="select(3)" aria-controls="view statistics" role="tab" ui-sref="app.farmerDeleteProduct({farmerId:farmer.vendor})">Delete Product</a></li>
+            <li role="presentation" ng-class="{active:isSelected(6)}">
+                <a ng-click="select(6)" aria-controls="view statistics" role="tab" ui-sref="app.farmerUpdateProduct({farmerId:farmer.vendor})">Update Product</a></li>
+            <li role="presentation" ng-class="{active:isSelected(4)}">
+                <a ng-click="select(4)" aria-controls="bill details" role="tab">View Reviews</a></li>
+            <li role="presentation" ng-class="{active:isSelected(5)}">
+                <a ng-click="select(5)" aria-controls="delete account" role="tab"
+                   ui-sref="app.farmerDeleteAccount">Delete Account</a></li>
+        </ul>
+    </div>
+
+    <div class="col-sm-9 farmer-products" ng-init="loadMore()" ng-hide="updateProductFlag">
+        <div class="container-fluid">
+            <a type="button" class="btn pull-right {{productsEmpty}}" style="color: #0066bb;margin-right: 100px" ng-click="loadMore()">Next<span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></a>
+            <!--<div ng-hide="{{disabled}}" style="color: red">There are no more products</div>-->
+        </div>
+        <div class="container-fluid">
+            <ul class="list-unstyled">
+
+                <li ng-repeat="x in images">
+                    <div class="col-sm-3 product-temp" style="background-color:white;border:1px solid darkgrey;z-index:2;margin-top:5px;">
+                        <a type="button" class="btn" ui-sref="app.productDetails({foo:'fooval',productid:x.productId})">
+                            <div class="product-image-box">
+                                <img ng-src="{{x.image}}" class="img-responsive" alt="" />
+                            </div>
+                        </a>
+                        <h6 class="temp-text"><strong>${{x.productPrice}}</strong></h6>
+                        <h5 class="temp-text">{{x.productName}}</h5>
+                        <button type="button" ng-click="fetchProductDetails(x)" class="btn btn-success farmer-mybtn col-sm-offset-3" name="button">Update</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row farmer-row">
+        <!--<div class="col-sm-2">
+        </div>-->
+        <div class="col-sm-6" ng-show="updateProductFlag">
+            <form class="form-horizontal" name="form"  ng-submit="farmerUpdateProduct()">
+                <fieldset>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="product_price">Product Price</label>
+                        <div class="col-sm-6">
+                            <input id="product_price" ng-model="productValues.productPrice" name="product_price" type="number"
+                                   placeholder="Price" class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="product_name">Name</label>
+                        <div class="col-sm-6">
+                            <input id="product_name" name="product_name" type="text" placeholder="Product Name"
+                                   ng-model="productValues.productName" class="form-control input-md" required>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="product_description">Product Description</label>
+                        <div class="col-sm-6">
+                  <textarea class="form-control" id="product_description" name="product_description"
+                            ng-model="productValues.productDescription" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="product_image">Product Image</label>
+                        <div class="col-sm-6">
+                            <input id="product_image" type="file" ngf-select
+                                   ng-model="productValues.image" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="update_product"></label>
+                        <div class="col-sm-6">
+                            <button id="update_product" ng-click="farmerUpdateProduct()" name="update_product" class="btn btn-primary">Update Product</button>
+                        </div>
+                    </div>
+
+                    <!--<div class="alert alert-success" ng-show="success">
+                        <strong>Product has been added, Waiting for admin approval</strong>
+                    </div>-->
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="col-sm-3" ng-show="updateProductFlag">
+            <img class="img-responsive" ngf-thumbnail="productValues.image"/>
+        </div>
+    </div>
+</div>

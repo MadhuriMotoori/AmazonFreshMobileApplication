@@ -1,0 +1,93 @@
+.products-main-container{
+   // background-color:grey;
+   position:relative;
+}
+
+.column-container{
+   /* border: 1px solid darkslategrey;*/
+    margin:5px;
+    padding:5px;
+}
+
+.products-left,.products-middle{
+height:auto;
+
+}
+
+.products-left{
+   /* border: 1px solid darkslategrey;*/
+}
+
+.products-right{
+    border-left:1px solid darkgrey;
+}
+
+.checkout-temp{
+    border: 1px solid darkgrey;
+}
+
+.mybtn{
+    margin-top: 10px;
+    font-size: 1vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mycols{
+    height:468px;
+
+}
+
+.column-one-row2{
+    height: auto;
+}
+
+
+.product-details-temp{
+    margin-top: 10px;
+}
+
+.product-image{
+    align-content: center;
+
+}
+
+.farmer-row{
+
+}
+
+.temp-text{
+    text-align: center;
+}
+
+.farmer-mybtn{
+    margin-bottom: 5px;
+    font-size: 1vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.farmer-products{
+    padding-left: 0px;
+    padding-right:0px;
+    padding-bottom:5px;
+}
+
+.farmer-mycols{
+    margin-top: 5px;
+}
+
+
+.product-temp{
+    border : 1px solid grey;
+    width: 200px;
+    height: 300px;
+    margin: 4px;
+}
+
+.product-image-box{
+    height: 150px;
+}
+
+.customer-products{
+    margin-left:70px;
+}
